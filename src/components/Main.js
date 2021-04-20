@@ -126,9 +126,9 @@ class Main extends Component {
             //Setting state with Batter data 
             .then((data) => {
                 this.setState({ batter_one_stats: data })
-                this.setState({batter_prop_passed: this.state.batter_one})
-                this.setState({batter_image_passed: this.state.batter_one_image})
-                this.setState({batter_stats_passed: this.state.batter_one_stats})
+                this.setState({ batter_prop_passed: this.state.batter_one })
+                this.setState({ batter_image_passed: this.state.batter_one_image })
+                this.setState({ batter_stats_passed: this.state.batter_one_stats })
                 //console.log(this.state.batter_one_stats)
             })
             .catch((e) => {
@@ -152,6 +152,7 @@ class Main extends Component {
             })
 
         //Getting Batter three stats over time 
+        this.getAllBatters()
         axios.get(`https://project.trumedianetworks.com/api/mlb/player/${batter_three_id}`, {
             headers: {
                 'tempToken': tempToken
@@ -176,29 +177,29 @@ class Main extends Component {
         this.getTempToken()
         this.getAllBatters()
         this.getAllBattersStats()
-        
+
     }
 
 
     // Handle when batter one is selected 
-    handleBatterOneClick(){
-        this.setState({batter_prop_passed: this.state.batter_one})
-        this.setState({batter_image_passed: this.state.batter_one_image})
-        this.setState({batter_stats_passed: this.state.batter_one_stats})
+    handleBatterOneClick() {
+        this.setState({ batter_prop_passed: this.state.batter_one })
+        this.setState({ batter_image_passed: this.state.batter_one_image })
+        this.setState({ batter_stats_passed: this.state.batter_one_stats })
     }
 
     // Handle when batter two is selected 
-    handleBatterTwoClick(){
-        this.setState({batter_prop_passed: this.state.batter_two})
-        this.setState({batter_image_passed: this.state.batter_two_image})
-        this.setState({batter_stats_passed: this.state.batter_two_stats})
+    handleBatterTwoClick() {
+        this.setState({ batter_prop_passed: this.state.batter_two })
+        this.setState({ batter_image_passed: this.state.batter_two_image })
+        this.setState({ batter_stats_passed: this.state.batter_two_stats })
     }
 
-     // Handle when batter three is selected 
-     handleBatterThreeClick(){
-        this.setState({batter_prop_passed: this.state.batter_three})
-        this.setState({batter_image_passed: this.state.batter_three_image})
-        this.setState({batter_stats_passed: this.state.batter_three_stats})
+    // Handle when batter three is selected 
+    handleBatterThreeClick() {
+        this.setState({ batter_prop_passed: this.state.batter_three })
+        this.setState({ batter_image_passed: this.state.batter_three_image })
+        this.setState({ batter_stats_passed: this.state.batter_three_stats })
     }
 
 
@@ -213,24 +214,22 @@ class Main extends Component {
                 </div>
                 <h2 className="batter_selector">Choose your batter:</h2>
                 <div>
-                    <button className = "selector_button" onClick ={this.handleBatterOneClick}>
+                    <button className="selector_button" onClick={this.handleBatterOneClick}>
                         <img className="button_image" src={batter_one_image} alt="Batter One Image" onClick={this.myfunction} />
                         <h3 className="button_name">{batter_one['fullName']}</h3>
                     </button>
                 </div>
                 <div>
-                    <button className = "selector_button" onClick ={this.handleBatterTwoClick}>
+                    <button className="selector_button" onClick={this.handleBatterTwoClick}>
                         <img className="button_image" src={batter_two_image} alt="Batter Two Image" onClick={this.myfunction} />
                         <h3 className="button_name">{batter_two['fullName']}</h3>
                     </button>
-                    <h3 className="button_name">{batter_two['fullName']}</h3>
                 </div>
                 <div>
-                    <button className = "selector_button" onClick ={this.handleBatterThreeClick}>
-                        <img className="button_image" src={batter_three_image} alt="Batter Three Image"  onClick={this.myfunction} />
+                    <button className="selector_button" onClick={this.handleBatterThreeClick}>
+                        <img className="button_image" src={batter_three_image} alt="Batter Three Image" onClick={this.myfunction} />
                         <h3 className="button_name">{batter_three['fullName']}</h3>
                     </button>
-
                 </div>
             </div>
             <div className="pic_stats">

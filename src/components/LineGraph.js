@@ -60,7 +60,7 @@ const LineGraph = ({ batter_one_stats }) => {
     // Variable for formatted data 
     let graphData = formatData(batter_one_stats)
 
-    console.log(graphData)
+    //console.log(graphData)
 
     return (
         <div>
