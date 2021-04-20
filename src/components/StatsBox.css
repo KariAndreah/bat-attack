@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'MLBBLOCK';
+    src: url(/src/MLB-Block/MLBBLOCK.TTF);
+}
+
+.batter_name_stats{
+    font-family: 'MLBBLOCK';
+    font-size: 40px;
+}
+.stats_box{
+   display: row;
+    text-align: center; 
+}
+.stats_header{
+    font-family: 'MLBBLOCK';
+    font-size: 30px;
+    padding-bottom: 10px;
+    color: #002D72;
+}
+
+.stats_table{
+    font-family: 'MLBBLOCK';
+    margin:2px;
+}
+
+.stats{
+    font-size: 24px;
+    padding: 16px;
+    text-align: left;
+    border-left: #D50032 solid 4px;
+    border-bottom: #002D72 solid 4px;
+}

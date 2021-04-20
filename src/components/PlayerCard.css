@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'MLBBLOCK';
+    src: url(/src/MLB-Block/MLBBLOCK.TTF);
+}
+
+.baseball_card{
+    position: relative;
+    min-height: 336px;
+    max-height:336px;
+    min-width:242px;
+    border: 3px black solid;
+    align-items: center;
+    top:0;
+    left: 0;
+    background-color: #F6F7DD;
+    justify-content: center;
+}
+.batter_name{
+    font-size:24px;
+    text-align: center;
+    top: 20px;
+    flex:1;
+    font-family: 'MLBBLOCK';
+   
+}
+.batter_image{
+    position: relative;
+    left:31px;
+    top:10px;
+    z-index: 1;
+    width:180px;
+    height:270px;
+    border: 2px black solid; 
+}
+.team_image{
+    position: absolute;
+    top: 2px;
+    left:10px;
+    height:60px;
+    width:60px;
+    z-index: 3;
+}
