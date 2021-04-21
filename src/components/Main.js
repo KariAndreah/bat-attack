@@ -170,30 +170,14 @@ class Main extends Component {
             })
     }
 
-    loadData() {
-        this.getTempToken()
-        this.getAllBatters()
-        this.getAllBattersStats()
-        var promise = new Promise((resolve, reject) => { 
-          setTimeout(() => {
-            console.log('This happens 6th (after 3 seconds).');
-            resolve('This is my data.');
-          }, 3000);
-        });
-    
-        console.log('This happens 4th.');
-    
-        return promise;
-      }
     /**
      * When component mounts all api calls occur
      */
     componentDidMount() {
-        this.loadData(); 
-        this.setState({ batter_prop_passed: this.state.batter_one })
-        this.setState({ batter_image_passed: this.state.batter_one_image })
-        this.setState({ batter_stats_passed: this.state.batter_one_stats })
-        this.setState({loading:'true'});
+        this.getTempToken()
+        this.getAllBatters()
+        this.getAllBattersStats()
+        this.setState({ loading: 'true' });
     }
 
 
@@ -220,74 +204,74 @@ class Main extends Component {
 
 
     render() {
-        if(this.state.loading === 'inital'){
+        if (this.state.loading === 'inital') {
             return <h2>Loading</h2>
         }
 
-        if(this.state.loading === 'true'){
-        //Props being passed to children
-        const { batter_prop_passed, batter_image_passed, batter_stats_passed, batter_one, batter_one_image, batter_one_stats, batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
-        return <div className='main_page'>
-            < div className="top_header_container" >
-                <div className="logo_name_container">
-                    <img className='logo' src={mlblogo} alt='MLB Logo' />
-                    <h2 className="project_name">Bat Attack</h2>
+        if (this.state.loading === 'true') {
+            //Props being passed to children
+            const { batter_prop_passed, batter_image_passed, batter_stats_passed, batter_one, batter_one_image, batter_one_stats, batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
+            return <div className='main_page'>
+                < div className="top_header_container" >
+                    <div className="logo_name_container">
+                        <img className='logo' src={mlblogo} alt='MLB Logo' />
+                        <h2 className="project_name">Bat Attack</h2>
+                    </div>
+                    <h2 className="batter_selector">Choose your batter:</h2>
+                    <div>
+                        <button className="selector_button" onClick={this.handleBatterOneClick}>
+                            <img className="button_image" src={batter_one_image} alt="Batter One Image" onClick={this.myfunction} />
+                            <h3 className="button_name">{batter_one['fullName']}</h3>
+                        </button>
+                    </div>
+                    <div>
+                        <button className="selector_button" onClick={this.handleBatterTwoClick}>
+                            <img className="button_image" src={batter_two_image} alt="Batter Two Image" onClick={this.myfunction} />
+                            <h3 className="button_name">{batter_two['fullName']}</h3>
+                        </button>
+                    </div>
+                    <div>
+                        <button className="selector_button" onClick={this.handleBatterThreeClick}>
+                            <img className="button_image" src={batter_three_image} alt="Batter Three Image" onClick={this.myfunction} />
+                            <h3 className="button_name">{batter_three['fullName']}</h3>
+                        </button>
+                    </div>
+                </div >
+                <div className="pic_stats">
+                    <PlayerCard batter_one={batter_prop_passed}
+                        batter_one_image={batter_image_passed} />
+                    <StatsBox batter_one={batter_prop_passed}
+                        batter_one_stats={batter_stats_passed} />
                 </div>
-                <h2 className="batter_selector">Choose your batter:</h2>
-                <div>
-                    <button className="selector_button" onClick={this.handleBatterOneClick}>
-                        <img className="button_image" src={batter_one_image} alt="Batter One Image" onClick={this.myfunction} />
-                        <h3 className="button_name">{batter_one['fullName']}</h3>
-                    </button>
+                <div className='line_chart_container'>
+                    <LineGraph batter_one_stats={batter_stats_passed} />
                 </div>
-                <div>
-                    <button className="selector_button" onClick={this.handleBatterTwoClick}>
-                        <img className="button_image" src={batter_two_image} alt="Batter Two Image" onClick={this.myfunction} />
-                        <h3 className="button_name">{batter_two['fullName']}</h3>
-                    </button>
-                </div>
-                <div>
-                    <button className="selector_button" onClick={this.handleBatterThreeClick}>
-                        <img className="button_image" src={batter_three_image} alt="Batter Three Image" onClick={this.myfunction} />
-                        <h3 className="button_name">{batter_three['fullName']}</h3>
-                    </button>
+                <div className='glossary_container'>
+                    <table className='glossary_table'>
+                        <thead>
+                            <tr>
+                                <th className='glossary_header' colSpan="3">Glossary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className='stats'>AB: At Bat</td>
+                                <td className='stats'>H: Hits</td>
+                                <td className='stats'>HR: Home Runs</td>
+                            </tr>
+                            <tr>
+                                <td className='stats'>RBI: Runs Batted In</td>
+                                <td className='stats'>AVG: Batting Average</td>
+                                <td className='stats'>OBP: Total On Base Percentage</td>
+                            </tr>
+                            <tr>
+                                <td className='stats'>SLG: Slugging</td>
+                                <td className='stats'>OPS: On Base Percentage Plus Slugging</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div >
-            <div className="pic_stats">
-                <PlayerCard batter_one={batter_prop_passed}
-                    batter_one_image={batter_image_passed} />
-                <StatsBox batter_one={batter_prop_passed}
-                    batter_one_stats={batter_stats_passed} />
-            </div>
-            <div className='line_chart_container'>
-                <LineGraph batter_one_stats={batter_stats_passed} />
-            </div>
-            <div className='glossary_container'>
-                <table className='glossary_table'>
-                    <thead>
-                        <tr>
-                            <th className='glossary_header' colSpan="3">Glossary</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td className='stats'>AB: At Bat</td>
-                            <td className='stats'>H: Hits</td>
-                            <td className='stats'>HR: Home Runs</td>
-                        </tr>
-                        <tr>
-                            <td className='stats'>RBI: Runs Batted In</td>
-                            <td className='stats'>AVG: Batting Average</td>
-                            <td className='stats'>OBP: Total On Base Percentage</td>
-                        </tr>
-                        <tr>
-                            <td className='stats'>SLG: Slugging</td>
-                            <td className='stats'>OPS: On Base Percentage Plus Slugging</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div >
 
         }
     }
