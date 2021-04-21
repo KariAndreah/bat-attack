@@ -31,6 +31,7 @@ class Main extends Component {
             batter_two_stats: [],
             batter_three_stats: [],
             batter_stats_passed: [],
+            loading: 'inital'
         }
         this.handleBatterOneClick = this.handleBatterOneClick.bind(this)
         this.handleBatterTwoClick = this.handleBatterTwoClick.bind(this)
@@ -128,7 +129,6 @@ class Main extends Component {
                 this.setState({ batter_one_stats: data })
                 this.setState({ batter_prop_passed: this.state.batter_one })
                 this.setState({ batter_image_passed: this.state.batter_one_image })
-                this.setState({ batter_stats_passed: this.state.batter_one_stats })
                 //console.log(this.state.batter_one_stats)
             })
             .catch((e) => {
@@ -145,6 +145,7 @@ class Main extends Component {
             //Setting state with Batter data 
             .then((data) => {
                 this.setState({ batter_two_stats: data })
+                this.setState({ batter_stats_passed: this.state.batter_one_stats })
                 //console.log(this.state.batter_two_stats)
             })
             .catch((e) => {
@@ -169,15 +170,30 @@ class Main extends Component {
             })
     }
 
-
+    loadData() {
+        this.getTempToken()
+        this.getAllBatters()
+        this.getAllBattersStats()
+        var promise = new Promise((resolve, reject) => { 
+          setTimeout(() => {
+            console.log('This happens 6th (after 3 seconds).');
+            resolve('This is my data.');
+          }, 3000);
+        });
+    
+        console.log('This happens 4th.');
+    
+        return promise;
+      }
     /**
      * When component mounts all api calls occur
      */
     componentDidMount() {
-        this.getTempToken()
-        this.getAllBatters()
-        this.getAllBattersStats()
-
+        this.loadData(); 
+        this.setState({ batter_prop_passed: this.state.batter_one })
+        this.setState({ batter_image_passed: this.state.batter_one_image })
+        this.setState({ batter_stats_passed: this.state.batter_one_stats })
+        this.setState({loading:'true'});
     }
 
 
@@ -204,10 +220,15 @@ class Main extends Component {
 
 
     render() {
+        if(this.state.loading === 'inital'){
+            return <h2>Loading</h2>
+        }
+
+        if(this.state.loading === 'true'){
         //Props being passed to children
         const { batter_prop_passed, batter_image_passed, batter_stats_passed, batter_one, batter_one_image, batter_one_stats, batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
         return <div className='main_page'>
-            <div className="top_header_container">
+            < div className="top_header_container" >
                 <div className="logo_name_container">
                     <img className='logo' src={mlblogo} alt='MLB Logo' />
                     <h2 className="project_name">Bat Attack</h2>
@@ -231,7 +252,7 @@ class Main extends Component {
                         <h3 className="button_name">{batter_three['fullName']}</h3>
                     </button>
                 </div>
-            </div>
+            </div >
             <div className="pic_stats">
                 <PlayerCard batter_one={batter_prop_passed}
                     batter_one_image={batter_image_passed} />
@@ -266,8 +287,9 @@ class Main extends Component {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
 
+        }
     }
 }
 
