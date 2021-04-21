@@ -90,21 +90,27 @@ class Main extends Component {
                 Cookies.set('batter_two_id', this.state.batter_two['playerId'])
                 Cookies.set('batter_three_id', this.state.batter_three['playerId'])
 
-                //Fixing Image url for batter one 
+
+                /**
+                 * Fixing Image url for batter one
+                 * It accidentally had two "https:"
+                 * Also for google https doesnt work, http does
+                 */
                 let batter_one_image = this.state.batter_one['playerImage']
-                let new_batter_one_image = batter_one_image.slice(0, 8) + batter_one_image.slice(12)
+                let new_batter_one_image = batter_one_image.slice(0, 4) + batter_one_image.slice(5, 8) + batter_one_image.slice(12)
                 this.setState({ batter_one_image: new_batter_one_image })
                 //console.log(this.state.batter_one_image)
 
-                //Fixing Image url for batter two 
+                //Fixing Image url for batter two
                 let batter_two_image = this.state.batter_two['playerImage']
-                let new_batter_two_image = batter_two_image.slice(0, 8) + batter_two_image.slice(12)
+                let new_batter_two_image = batter_two_image.slice(0, 4) + batter_two_image.slice(5, 8) + batter_two_image.slice(12)
+                //console.log(new_batter_two_image)
                 this.setState({ batter_two_image: new_batter_two_image })
                 //console.log(this.state.batter_two_image)
 
                 //Fixing Image url for batter three 
                 let batter_three_image = this.state.batter_three['playerImage']
-                let new_batter_three_image = batter_three_image.slice(0, 8) + batter_three_image.slice(12)
+                let new_batter_three_image = batter_three_image.slice(0, 4) + batter_three_image.slice(5, 8) + batter_three_image.slice(12)
                 this.setState({ batter_three_image: new_batter_three_image })
                 //console.log(this.state.batter_three_image)
             })
@@ -114,9 +120,9 @@ class Main extends Component {
     }
 
 
-     /**
-     * Function gets all the batter data over 2018, and stores it an object
-     */
+    /**
+    * Function gets all the batter data over 2018, and stores it an object
+    */
     async getAllBattersStats() {
         let tempToken = Cookies.get('tempToken')
         let batter_one_id = Cookies.get('batter_one_id')
@@ -215,7 +221,7 @@ class Main extends Component {
 
     render() {
         if (this.state.loading === 'true') {
-            const { batter_prop_passed, batter_image_passed, batter_stats_passed, batter_one, batter_one_image, batter_one_stats, batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
+            const { batter_one, batter_one_image,  batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
             return < div className="top_header_container" >
                 <div className="logo_name_container">
                     <img className='logo' src={mlblogo} alt='MLB Logo' />
