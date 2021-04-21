@@ -3,69 +3,69 @@ import Main from './Main';
 import './PlayerCard.css';
 import './StatsBox.css';
 
-const StatsBox = ({ batter_one, batter_one_stats }) => {
+const StatsBox = ({ current_batter, current_batter_stats }) => {
     // To find what I need to add 
     // console.log(batter_one_stats)
 
     // Find total At Bat (AB) 2018 
     let total_at_bat = 0;
-    for (let i = 0; i < batter_one_stats.length; i++) {
-        total_at_bat += batter_one_stats[i]['AB']
+    for (let i = 0; i < current_batter_stats.length; i++) {
+        total_at_bat += current_batter_stats[i]['AB']
     }
 
     // Find total walks (BB) 2018
     let total_walks = 0;
-    for (let i = 0; i < batter_one_stats.length; i++) {
-        total_walks += batter_one_stats[i]['BB']
+    for (let i = 0; i < current_batter_stats.length; i++) {
+        total_walks += current_batter_stats[i]['BB']
     }
 
     // Find total hits (H) 2018
     let total_hits = 0;
-    for (let i = 0; i < batter_one_stats.length; i++) {
-        total_hits += batter_one_stats[i]['H']
+    for (let i = 0; i < current_batter_stats.length; i++) {
+        total_hits += current_batter_stats[i]['H']
     }
 
     // Find total Hit by Pitch (HBP) 2018
     let total_hit_by_pitch = 0;
-    for (let i = 0; i < batter_one_stats.length; i++) {
-        total_hit_by_pitch += batter_one_stats[i]['HBP']
+    for (let i = 0; i < current_batter_stats.length; i++) {
+        total_hit_by_pitch += current_batter_stats[i]['HBP']
     }
 
     // Find total Home runs (HR) 2018
     let total_home_runs = 0;
-    for (let i = 0; i < batter_one_stats.length; i++) {
-        total_home_runs += batter_one_stats[i]['HR']
+    for (let i = 0; i < current_batter_stats.length; i++) {
+        total_home_runs += current_batter_stats[i]['HR']
     }
 
     // Find total Strike Outs (K) 2018
     let total_strike_outs = 0;
-    for (let i = 0; i < batter_one_stats.length; i++) {
-        total_strike_outs += batter_one_stats[i]['K']
+    for (let i = 0; i < current_batter_stats.length; i++) {
+        total_strike_outs += current_batter_stats[i]['K']
     }
 
     // Find total Plate Appearences (PA) 2018 
     let total_plate_appearences = 0;
-    for (let i = 0; i < batter_one_stats.length; i++) {
-        total_plate_appearences += batter_one_stats[i]['PA']
+    for (let i = 0; i < current_batter_stats.length; i++) {
+        total_plate_appearences += current_batter_stats[i]['PA']
     }
 
     // Find total Runs batted in (RBI) 2018
     let total_runs_batted_in = 0;
-    for (let i = 0; i < batter_one_stats.length; i++) {
-        total_runs_batted_in += batter_one_stats[i]['RBI']
+    for (let i = 0; i < current_batter_stats.length; i++) {
+        total_runs_batted_in += current_batter_stats[i]['RBI']
     }
 
     // Find total sacrifice flies (SF) in 2018
     let total_sacrifice_flies = 0;
-    for (let i = 0; i < batter_one_stats.length; i++) {
-        total_sacrifice_flies += batter_one_stats[i]['SF']
+    for (let i = 0; i < current_batter_stats.length; i++) {
+        total_sacrifice_flies += current_batter_stats[i]['SF']
     }
 
 
     // Find total Bases (TB) in 2018 
     let total_bases = 0;
-    for (let i = 0; i < batter_one_stats.length; i++) {
-        total_bases += batter_one_stats[i]['TB']
+    for (let i = 0; i < current_batter_stats.length; i++) {
+        total_bases += current_batter_stats[i]['TB']
     }
 
     // Find batting average (AVG) in 2018
@@ -84,7 +84,7 @@ const StatsBox = ({ batter_one, batter_one_stats }) => {
     //BB, H, HBP, HR, K, PA, RBI, SF, TB 
     return (
         <div className='stats_box'>
-            <h1 className = 'batter_name_stats'>{batter_one['fullName']}</h1>
+            <h1 className = 'batter_name_stats'>{current_batter['fullName']}</h1>
             <table className='stats_table'>
                 <thead>
                     <tr>

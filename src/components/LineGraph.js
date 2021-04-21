@@ -2,7 +2,7 @@ import './LineGraph.css';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
-const LineGraph = ({ batter_one_stats }) => {
+const LineGraph = ({ current_batter_stats }) => {
 
     // Function to format AVG and OPS data into an object for line graph 
     function formatData() {
@@ -15,9 +15,9 @@ const LineGraph = ({ batter_one_stats }) => {
         let avg = []
 
         // For-loop to calculate running AVG and push to array
-        for (let i = 0; i < batter_one_stats.length; i++) {
-            hitTotal = hitTotal + batter_one_stats[i].H
-            abTotal = abTotal + batter_one_stats[i].AB
+        for (let i = 0; i < current_batter_stats.length; i++) {
+            hitTotal = hitTotal + current_batter_stats[i].H
+            abTotal = abTotal + current_batter_stats[i].AB
             currentAvg = hitTotal / abTotal
             avg.push(currentAvg.toFixed(3))
         }
@@ -33,13 +33,13 @@ const LineGraph = ({ batter_one_stats }) => {
         let ops = []
 
         // For-loop to calculate running OPS and push to array
-        for (let i = 0; i < batter_one_stats.length; i++) {
-            opsHitTotal = opsHitTotal + batter_one_stats[i].H
-            opsAbTotal = opsAbTotal + batter_one_stats[i].AB
-            tbTotal = tbTotal + batter_one_stats[i].TB
-            bbTotal = bbTotal + batter_one_stats[i].BB
-            hbpTotal = hbpTotal + batter_one_stats[i].HBP
-            sfTotal = sfTotal + batter_one_stats[i].SF
+        for (let i = 0; i < current_batter_stats.length; i++) {
+            opsHitTotal = opsHitTotal + current_batter_stats[i].H
+            opsAbTotal = opsAbTotal + current_batter_stats[i].AB
+            tbTotal = tbTotal + current_batter_stats[i].TB
+            bbTotal = bbTotal + current_batter_stats[i].BB
+            hbpTotal = hbpTotal + current_batter_stats[i].HBP
+            sfTotal = sfTotal + current_batter_stats[i].SF
             let SLG = (tbTotal) / (opsAbTotal)
             let OBP = ((opsHitTotal + bbTotal + hbpTotal) / (opsAbTotal + bbTotal + sfTotal + hbpTotal))
             currentOPS = (SLG) + (OBP)
@@ -47,9 +47,9 @@ const LineGraph = ({ batter_one_stats }) => {
         }
 
         // Formatting date, AVG array, and OPS array in object for line graph
-        for (let i = 0; i < batter_one_stats.length; i++) {
+        for (let i = 0; i < current_batter_stats.length; i++) {
             let newData = {}
-            newData['date'] = (batter_one_stats[i].gameDate).slice(5, 10)
+            newData['date'] =  (current_batter_stats[i].gameDate).slice(5, 10)
             newData['AVG'] = avg[i]
             newData['OPS'] = ops[i]
             totalData.push(newData)
@@ -58,7 +58,7 @@ const LineGraph = ({ batter_one_stats }) => {
     }
 
     // Variable for formatted data 
-    let graphData = formatData(batter_one_stats)
+    let graphData = formatData (current_batter_stats)
 
     //console.log(graphData)
 

@@ -31,7 +31,7 @@ class Main extends Component {
             batter_two_stats: [],
             batter_three_stats: [],
             batter_stats_passed: [],
-            loading: 'inital'
+            loading: 'true'
         }
         this.handleBatterOneClick = this.handleBatterOneClick.bind(this)
         this.handleBatterTwoClick = this.handleBatterTwoClick.bind(this)
@@ -44,20 +44,24 @@ class Main extends Component {
      * So you don't have to call for tempToken each load
      * 
      */
+
     async getTempToken() {
-        axios.get('https://project.trumedianetworks.com/api/token', {
-            headers: {
-                'apiKey': `199b9b1a-1973-4aa9-9f7c-f22b9a9b4cbe`
-            }
-        })
-            .then(response => response.data)
-            .then((data) => {
-                this.setState({ tempToken: data['token'] })
-                Cookies.set('tempToken', data['token'], { expires: 1 })
+        let tempToken = Cookies.get('tempToken')
+        if (!tempToken) {
+            await axios.get('https://project.trumedianetworks.com/api/token', {
+                headers: {
+                    'apiKey': `199b9b1a-1973-4aa9-9f7c-f22b9a9b4cbe`
+                }
             })
-            .catch((e) => {
-                console.error(e);
-            })
+                .then(response => response.data)
+                .then((data) => {
+                    this.setState({ tempToken: data['token'] })
+                    Cookies.set('tempToken', data['token'], { expires: 1 })
+                })
+                .catch((e) => {
+                    console.error(e);
+                })
+        }
     }
 
 
@@ -67,7 +71,7 @@ class Main extends Component {
      */
     async getAllBatters() {
         let tempToken = Cookies.get('tempToken')
-        axios.get('https://project.trumedianetworks.com/api/mlb/players', {
+        await axios.get('https://project.trumedianetworks.com/api/mlb/players', {
             headers: {
                 'tempToken': tempToken
             }
@@ -110,7 +114,9 @@ class Main extends Component {
     }
 
 
-    //
+     /**
+     * Function gets all the batter data over 2018, and stores it an object
+     */
     async getAllBattersStats() {
         let tempToken = Cookies.get('tempToken')
         let batter_one_id = Cookies.get('batter_one_id')
@@ -118,7 +124,7 @@ class Main extends Component {
         let batter_three_id = Cookies.get('batter_three_id')
 
         //Getting Batter one stats over time 
-        axios.get(`https://project.trumedianetworks.com/api/mlb/player/${batter_one_id}`, {
+        await axios.get(`https://project.trumedianetworks.com/api/mlb/player/${batter_one_id}`, {
             headers: {
                 'tempToken': tempToken
             }
@@ -136,7 +142,7 @@ class Main extends Component {
             })
 
         //Getting Batter two stats over time 
-        axios.get(`https://project.trumedianetworks.com/api/mlb/player/${batter_two_id}`, {
+        await axios.get(`https://project.trumedianetworks.com/api/mlb/player/${batter_two_id}`, {
             headers: {
                 'tempToken': tempToken
             }
@@ -154,7 +160,7 @@ class Main extends Component {
 
         //Getting Batter three stats over time 
         this.getAllBatters()
-        axios.get(`https://project.trumedianetworks.com/api/mlb/player/${batter_three_id}`, {
+        await axios.get(`https://project.trumedianetworks.com/api/mlb/player/${batter_three_id}`, {
             headers: {
                 'tempToken': tempToken
             }
@@ -168,47 +174,76 @@ class Main extends Component {
             .catch((e) => {
                 console.error(e);
             })
+
     }
 
     /**
      * When component mounts all api calls occur
      */
-    componentDidMount() {
-        this.getTempToken()
-        this.getAllBatters()
-        this.getAllBattersStats()
-        this.setState({ loading: 'true' });
+    async componentDidMount() {
+        await this.getTempToken()
+        await this.getAllBatters()
+        await this.getAllBattersStats()
     }
 
 
-    // Handle when batter one is selected 
+    // Handle state change when batter one is selected 
     handleBatterOneClick() {
         this.setState({ batter_prop_passed: this.state.batter_one })
         this.setState({ batter_image_passed: this.state.batter_one_image })
         this.setState({ batter_stats_passed: this.state.batter_one_stats })
+        this.setState({ loading: 'false' });
     }
 
-    // Handle when batter two is selected 
+    // Handle state change when batter two is selected 
     handleBatterTwoClick() {
         this.setState({ batter_prop_passed: this.state.batter_two })
         this.setState({ batter_image_passed: this.state.batter_two_image })
         this.setState({ batter_stats_passed: this.state.batter_two_stats })
+        this.setState({ loading: 'false' });
     }
 
-    // Handle when batter three is selected 
+    // Handle state change when batter three is selected 
     handleBatterThreeClick() {
         this.setState({ batter_prop_passed: this.state.batter_three })
         this.setState({ batter_image_passed: this.state.batter_three_image })
         this.setState({ batter_stats_passed: this.state.batter_three_stats })
+        this.setState({ loading: 'false' });
+
     }
 
 
     render() {
-        if (this.state.loading === 'inital') {
-            return <h2>Loading</h2>
+        if (this.state.loading === 'true') {
+            const { batter_prop_passed, batter_image_passed, batter_stats_passed, batter_one, batter_one_image, batter_one_stats, batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
+            return < div className="top_header_container" >
+                <div className="logo_name_container">
+                    <img className='logo' src={mlblogo} alt='MLB Logo' />
+                    <h2 className="project_name">Bat Attack</h2>
+                </div>
+                <h2 className="batter_selector">Choose your batter:</h2>
+                <div>
+                    <button className="selector_button" onClick={this.handleBatterOneClick}>
+                        <img className="button_image" src={batter_one_image} alt="Batter One Image" onClick={this.myfunction} />
+                        <h3 className="button_name">{batter_one['fullName']}</h3>
+                    </button>
+                </div>
+                <div>
+                    <button className="selector_button" onClick={this.handleBatterTwoClick}>
+                        <img className="button_image" src={batter_two_image} alt="Batter Two Image" onClick={this.myfunction} />
+                        <h3 className="button_name">{batter_two['fullName']}</h3>
+                    </button>
+                </div>
+                <div>
+                    <button className="selector_button" onClick={this.handleBatterThreeClick}>
+                        <img className="button_image" src={batter_three_image} alt="Batter Three Image" onClick={this.myfunction} />
+                        <h3 className="button_name">{batter_three['fullName']}</h3>
+                    </button>
+                </div>
+            </div >
         }
 
-        if (this.state.loading === 'true') {
+        if (this.state.loading === 'false') {
             //Props being passed to children
             const { batter_prop_passed, batter_image_passed, batter_stats_passed, batter_one, batter_one_image, batter_one_stats, batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
             return <div className='main_page'>
@@ -238,13 +273,13 @@ class Main extends Component {
                     </div>
                 </div >
                 <div className="pic_stats">
-                    <PlayerCard batter_one={batter_prop_passed}
-                        batter_one_image={batter_image_passed} />
-                    <StatsBox batter_one={batter_prop_passed}
-                        batter_one_stats={batter_stats_passed} />
+                    <PlayerCard current_batter={batter_prop_passed}
+                        current_batter_image={batter_image_passed} />
+                    <StatsBox current_batter={batter_prop_passed}
+                        current_batter_stats={batter_stats_passed} />
                 </div>
                 <div className='line_chart_container'>
-                    <LineGraph batter_one_stats={batter_stats_passed} />
+                    <LineGraph current_batter_stats={batter_stats_passed} />
                 </div>
                 <div className='glossary_container'>
                     <table className='glossary_table'>
