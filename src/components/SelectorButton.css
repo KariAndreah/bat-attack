@@ -1,0 +1,35 @@
+.selector_button{
+    margin-top: 5px;
+    max-width: 120px;
+    min-width:120px;
+    background-color: #F6F7DD;
+    min-height: 180px;
+    max-height: 180px;
+    cursor: pointer;
+}
+
+.button_name{
+    font-family: 'MLBBLOCK';
+    color: #041e42;
+    font-size: 14px;
+    margin-top:-0.25px;
+}
+
+
+/* ---------- Mobile ----------- */
+@media only screen and (max-width: 600px){
+ 
+    /* ------- HEADER MOBILE--------*/
+
+    .selector_button{
+        margin-top: 5px;
+        max-width: 25vw;
+        min-width: 25vw;
+        background-color: #F6F7DD;
+        min-height: 180px;
+        max-height: 180px;
+        cursor: pointer;
+    }
+
+ 
+}

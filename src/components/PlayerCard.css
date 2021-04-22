@@ -3,6 +3,7 @@
     src: url(/src/MLB-Block/MLBBLOCK.TTF);
 }
 
+/* --------- Player Card ----------*/
 .baseball_card{
     position: relative;
     min-height: 336px;
@@ -11,7 +12,6 @@
     border: 3px black solid;
     align-items: center;
     top:0;
-    left: 0;
     background-color: #F6F7DD;
     justify-content: center;
 }
@@ -39,4 +39,15 @@
     height:60px;
     width:60px;
     z-index: 3;
+}
+
+/* ---------- Mobile ----------- */
+@media only screen and (max-width: 600px){
+ 
+    /* ------- Player Card Mobile--------*/
+    .baseball_card{
+        min-width:242px;
+        max-width: 242px;
+    }
+    
 }

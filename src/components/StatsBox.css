@@ -3,6 +3,8 @@
     src: url(/src/MLB-Block/MLBBLOCK.TTF);
 }
 
+/* --------- Stats Box ----------*/
+
 .batter_name_stats{
     font-family: 'MLBBLOCK';
     font-size: 40px;
@@ -29,4 +31,26 @@
     text-align: left;
     border-left: #D50032 solid 4px;
     border-bottom: #002D72 solid 4px;
+}
+
+/* ---------- Mobile ----------- */
+@media only screen and (max-width: 600px){
+ 
+    /* ------- Stats Box Mobile--------*/
+    
+    .batter_name_stats{
+        font-size: 30px;
+    }
+    .stats_box{
+        display: row;
+        text-align: center; 
+    }
+    .stats_header{
+        font-family: 'MLBBLOCK';
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+    .stats{
+        font-size: 20px;
+    }  
 }

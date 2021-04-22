@@ -6,6 +6,7 @@ import StatsBox from './StatsBox';
 import './Main.css';
 import mlblogo from '../images/mlblogo.jpg';
 import LineGraph from './LineGraph';
+import SelectorButton from './SelectorButton';
 
 
 
@@ -50,7 +51,7 @@ class Main extends Component {
         if (!tempToken) {
             await axios.get('https://project.trumedianetworks.com/api/token', {
                 headers: {
-                    'apiKey': `199b9b1a-1973-4aa9-9f7c-f22b9a9b4cbe`
+                    'apiKey': process.env.BAT_ATTACK_API_KEY
                 }
             })
                 .then(response => response.data)
@@ -165,7 +166,6 @@ class Main extends Component {
             })
 
         //Getting Batter three stats over time 
-        this.getAllBatters()
         await axios.get(`https://project.trumedianetworks.com/api/mlb/player/${batter_three_id}`, {
             headers: {
                 'tempToken': tempToken
@@ -221,31 +221,22 @@ class Main extends Component {
 
     render() {
         if (this.state.loading === 'true') {
-            const { batter_one, batter_one_image,  batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
+            const { batter_one, batter_one_image, batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
             return < div className="top_header_container" >
                 <div className="logo_name_container">
                     <img className='logo' src={mlblogo} alt='MLB Logo' />
                     <h2 className="project_name">Bat Attack</h2>
                 </div>
-                <h2 className="batter_selector">Choose your batter:</h2>
-                <div>
-                    <button className="selector_button" onClick={this.handleBatterOneClick}>
-                        <img className="button_image" src={batter_one_image} alt="Batter One Image" onClick={this.myfunction} />
-                        <h3 className="button_name">{batter_one['fullName']}</h3>
-                    </button>
-                </div>
-                <div>
-                    <button className="selector_button" onClick={this.handleBatterTwoClick}>
-                        <img className="button_image" src={batter_two_image} alt="Batter Two Image" onClick={this.myfunction} />
-                        <h3 className="button_name">{batter_two['fullName']}</h3>
-                    </button>
-                </div>
-                <div>
-                    <button className="selector_button" onClick={this.handleBatterThreeClick}>
-                        <img className="button_image" src={batter_three_image} alt="Batter Three Image" onClick={this.myfunction} />
-                        <h3 className="button_name">{batter_three['fullName']}</h3>
-                    </button>
-                </div>
+                <h2 className="batter_prompt">Choose your batter:</h2>
+                <SelectorButton current_batter_image={batter_one_image}
+                    current_batter={batter_one}
+                    change_batter={this.handleBatterOneClick} />
+                <SelectorButton current_batter_image={batter_two_image}
+                    current_batter={batter_two}
+                    change_batter={this.handleBatterTwoClick} />
+                <SelectorButton current_batter_image={batter_three_image}
+                    current_batter={batter_three}
+                    change_batter={this.handleBatterThreeClick} />
             </div >
         }
 
@@ -258,25 +249,16 @@ class Main extends Component {
                         <img className='logo' src={mlblogo} alt='MLB Logo' />
                         <h2 className="project_name">Bat Attack</h2>
                     </div>
-                    <h2 className="batter_selector">Choose your batter:</h2>
-                    <div>
-                        <button className="selector_button" onClick={this.handleBatterOneClick}>
-                            <img className="button_image" src={batter_one_image} alt="Batter One Image" onClick={this.myfunction} />
-                            <h3 className="button_name">{batter_one['fullName']}</h3>
-                        </button>
-                    </div>
-                    <div>
-                        <button className="selector_button" onClick={this.handleBatterTwoClick}>
-                            <img className="button_image" src={batter_two_image} alt="Batter Two Image" onClick={this.myfunction} />
-                            <h3 className="button_name">{batter_two['fullName']}</h3>
-                        </button>
-                    </div>
-                    <div>
-                        <button className="selector_button" onClick={this.handleBatterThreeClick}>
-                            <img className="button_image" src={batter_three_image} alt="Batter Three Image" onClick={this.myfunction} />
-                            <h3 className="button_name">{batter_three['fullName']}</h3>
-                        </button>
-                    </div>
+                    <h2 className="batter_prompt">Choose your batter:</h2>
+                    <SelectorButton current_batter_image={batter_one_image}
+                        current_batter={batter_one}
+                        change_batter={this.handleBatterOneClick} />
+                    <SelectorButton current_batter_image={batter_two_image}
+                        current_batter={batter_two}
+                        change_batter={this.handleBatterTwoClick} />
+                    <SelectorButton current_batter_image={batter_three_image}
+                        current_batter={batter_three}
+                        change_batter={this.handleBatterThreeClick} />
                 </div >
                 <div className="pic_stats">
                     <PlayerCard current_batter={batter_prop_passed}
