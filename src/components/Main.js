@@ -51,7 +51,7 @@ class Main extends Component {
         if (!tempToken) {
             await axios.get('https://project.trumedianetworks.com/api/token', {
                 headers: {
-                    'apiKey': process.env.BAT_ATTACK_API_KEY
+                    'apiKey': `${process.env.REACT_APP_API_KEY}`
                 }
             })
                 .then(response => response.data)
