@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'MLBBLOCK';
+  src: url(/src/MLB-Block/MLBBLOCK.TTF);
+}
+
 body{
   width: 100vw;
   background: #D8D8D8;

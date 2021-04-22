@@ -32,7 +32,7 @@ class Main extends Component {
             batter_two_stats: [],
             batter_three_stats: [],
             batter_stats_passed: [],
-            loading: 'true'
+            isLoading: 'true'
         }
         this.handleBatterOneClick = this.handleBatterOneClick.bind(this)
         this.handleBatterTwoClick = this.handleBatterTwoClick.bind(this)
@@ -198,7 +198,7 @@ class Main extends Component {
         this.setState({ batter_prop_passed: this.state.batter_one })
         this.setState({ batter_image_passed: this.state.batter_one_image })
         this.setState({ batter_stats_passed: this.state.batter_one_stats })
-        this.setState({ loading: 'false' });
+        this.setState({ isLoading: 'false' });
     }
 
     // Handle state change when batter two is selected 
@@ -206,7 +206,7 @@ class Main extends Component {
         this.setState({ batter_prop_passed: this.state.batter_two })
         this.setState({ batter_image_passed: this.state.batter_two_image })
         this.setState({ batter_stats_passed: this.state.batter_two_stats })
-        this.setState({ loading: 'false' });
+        this.setState({ isLoading: 'false' });
     }
 
     // Handle state change when batter three is selected 
@@ -214,13 +214,14 @@ class Main extends Component {
         this.setState({ batter_prop_passed: this.state.batter_three })
         this.setState({ batter_image_passed: this.state.batter_three_image })
         this.setState({ batter_stats_passed: this.state.batter_three_stats })
-        this.setState({ loading: 'false' });
+        this.setState({ isLoading: 'false' });
 
     }
 
 
     render() {
-        if (this.state.loading === 'true') {
+        // First components to loaded upon start 
+        if (this.state.isLoading === 'true') {
             const { batter_one, batter_one_image, batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
             return < div className="top_header_container" >
                 <div className="logo_name_container">
@@ -240,7 +241,8 @@ class Main extends Component {
             </div >
         }
 
-        if (this.state.loading === 'false') {
+        // Components to load once a batter has been selected
+        if (this.state.isLoading === 'false') {
             //Props being passed to children
             const { batter_prop_passed, batter_image_passed, batter_stats_passed, batter_one, batter_one_image, batter_one_stats, batter_two_image, batter_three_image, batter_three, batter_two } = this.state;
             return <div className='main_page'>

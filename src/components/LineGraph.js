@@ -49,7 +49,7 @@ const LineGraph = ({ current_batter_stats }) => {
         // Formatting date, AVG array, and OPS array in object for line graph
         for (let i = 0; i < current_batter_stats.length; i++) {
             let newData = {}
-            newData['date'] =  (current_batter_stats[i].gameDate).slice(5, 10)
+            newData['date'] = (current_batter_stats[i].gameDate).slice(5, 10)
             newData['AVG'] = avg[i]
             newData['OPS'] = ops[i]
             totalData.push(newData)
@@ -58,13 +58,13 @@ const LineGraph = ({ current_batter_stats }) => {
     }
 
     // Variable for formatted data 
-    let graphData = formatData (current_batter_stats)
+    let graphData = formatData(current_batter_stats)
 
     //console.log(graphData)
 
     return (
         <div>
-            <div className = 'graph_title'>
+            <div className='graph_title'>
                 <h1>AVG and OPS over 2018</h1>
             </div>
             <ResponsiveContainer width="100%" aspect={3}>
@@ -72,15 +72,15 @@ const LineGraph = ({ current_batter_stats }) => {
                     width={1200}
                     height={400}
                     data={graphData}
-                    margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
+                    margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
                 >
                     <YAxis stroke="black" />
                     <XAxis dataKey="date" stroke="black" />
                     <Tooltip />
                     <Legend />
                     <CartesianGrid stroke="#f5f5f5" />
-                    <Line type="monotone" dataKey="OPS" stroke="#002D72" dot={false} strokeWidth={2}/>
-                    <Line type="monotone" dataKey="AVG" stroke="#D50032" dot={false} strokeWidth={2}/>
+                    <Line type="monotone" dataKey="OPS" stroke="#002D72" dot={false} strokeWidth={2} />
+                    <Line type="monotone" dataKey="AVG" stroke="#D50032" dot={false} strokeWidth={2} />
                 </LineChart>
             </ResponsiveContainer>
         </div>
