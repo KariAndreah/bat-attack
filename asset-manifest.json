@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/bat-attack/static/css/main.ea670feb.chunk.css",
-    "main.js": "/bat-attack/static/js/main.6e3bda3d.chunk.js",
-    "main.js.map": "/bat-attack/static/js/main.6e3bda3d.chunk.js.map",
+    "main.css": "/bat-attack/static/css/main.663dc028.chunk.css",
+    "main.js": "/bat-attack/static/js/main.1923bd80.chunk.js",
+    "main.js.map": "/bat-attack/static/js/main.1923bd80.chunk.js.map",
     "runtime-main.js": "/bat-attack/static/js/runtime-main.1496ac20.js",
     "runtime-main.js.map": "/bat-attack/static/js/runtime-main.1496ac20.js.map",
     "static/js/2.3f806632.chunk.js": "/bat-attack/static/js/2.3f806632.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.ab79c7f0.chunk.js": "/bat-attack/static/js/3.ab79c7f0.chunk.js",
     "static/js/3.ab79c7f0.chunk.js.map": "/bat-attack/static/js/3.ab79c7f0.chunk.js.map",
     "index.html": "/bat-attack/index.html",
-    "static/css/main.ea670feb.chunk.css.map": "/bat-attack/static/css/main.ea670feb.chunk.css.map",
+    "static/css/main.663dc028.chunk.css.map": "/bat-attack/static/css/main.663dc028.chunk.css.map",
     "static/js/2.3f806632.chunk.js.LICENSE.txt": "/bat-attack/static/js/2.3f806632.chunk.js.LICENSE.txt",
     "static/media/App.css": "/bat-attack/static/media/MLBBLOCK.186a0024.TTF",
     "static/media/mlblogo.5ae49ae7.jpg": "/bat-attack/static/media/mlblogo.5ae49ae7.jpg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.1496ac20.js",
     "static/js/2.3f806632.chunk.js",
-    "static/css/main.ea670feb.chunk.css",
-    "static/js/main.6e3bda3d.chunk.js"
+    "static/css/main.663dc028.chunk.css",
+    "static/js/main.1923bd80.chunk.js"
   ]
 }
