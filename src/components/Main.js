@@ -32,7 +32,8 @@ class Main extends Component {
             batter_two_stats: [],
             batter_three_stats: [],
             batter_stats_passed: [],
-            isLoading: 'true'
+            isLoading: 'true',
+            page: []
         }
         this.handleBatterOneClick = this.handleBatterOneClick.bind(this)
         this.handleBatterTwoClick = this.handleBatterTwoClick.bind(this)
@@ -96,23 +97,25 @@ class Main extends Component {
                  * Fixing Image url for batter one
                  * It accidentally had two "https:"
                  * Also for google https doesnt work, http does
+                 * Update: Commented out where the batter image url is corrected in the api
                  */
+                
                 let batter_one_image = this.state.batter_one['playerImage']
-                let new_batter_one_image = batter_one_image.slice(0, 4) + batter_one_image.slice(5, 8) + batter_one_image.slice(12)
-                this.setState({ batter_one_image: new_batter_one_image })
+                //let new_batter_one_image = batter_one_image.slice(0, 4) + batter_one_image.slice(5, 8) + batter_one_image.slice(12)
+                this.setState({ batter_one_image: batter_one_image })
                 //console.log(this.state.batter_one_image)
 
                 //Fixing Image url for batter two
                 let batter_two_image = this.state.batter_two['playerImage']
-                let new_batter_two_image = batter_two_image.slice(0, 4) + batter_two_image.slice(5, 8) + batter_two_image.slice(12)
+                //let new_batter_two_image = batter_two_image.slice(0, 4) + batter_two_image.slice(5, 8) + batter_two_image.slice(12)
                 //console.log(new_batter_two_image)
-                this.setState({ batter_two_image: new_batter_two_image })
+                this.setState({ batter_two_image: batter_two_image })
                 //console.log(this.state.batter_two_image)
 
                 //Fixing Image url for batter three 
                 let batter_three_image = this.state.batter_three['playerImage']
-                let new_batter_three_image = batter_three_image.slice(0, 4) + batter_three_image.slice(5, 8) + batter_three_image.slice(12)
-                this.setState({ batter_three_image: new_batter_three_image })
+                //let new_batter_three_image = batter_three_image.slice(0, 4) + batter_three_image.slice(5, 8) + batter_three_image.slice(12)
+                this.setState({ batter_three_image: batter_three_image })
                 //console.log(this.state.batter_three_image)
             })
             .catch((e) => {
@@ -176,6 +179,7 @@ class Main extends Component {
             .then((data) => {
                 this.setState({ batter_three_stats: data })
                 //console.log(this.state.batter_three_stats)
+                console.log(this.stats.batter_one_image)
             })
             .catch((e) => {
                 console.error(e);

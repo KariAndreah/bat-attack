@@ -1,8 +1,8 @@
 /* --------- Player Card ----------*/
 .baseball_card{
     position: relative;
-    min-height: 336px;
-    max-height:336px;
+    min-height: 350px;
+    max-height:350px;
     min-width:242px;
     border: 3px black solid;
     align-items: center;
@@ -13,24 +13,24 @@
 .batter_name{
     font-size:24px;
     text-align: center;
-    top: 20px;
     flex:1;
     font-family: 'MLBBLOCK';
    
 }
 .batter_image{
     position: relative;
-    left:31px;
-    top:10px;
+    left:20px;
+    top:40px;
     z-index: 1;
-    width:180px;
-    height:270px;
+    width:200px;
+    height:200px;
     border: 2px black solid; 
+    margin-bottom: 50px;
 }
 .team_image{
     position: absolute;
-    top: 2px;
-    left:10px;
+    top: 30px;
+    left:8px;
     height:60px;
     width:60px;
     z-index: 3;
